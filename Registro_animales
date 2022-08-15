@@ -1,0 +1,39 @@
+animales = [] # se crea la lista de animales
+cantidad_registros = int(input("¿Qué cantidad de registros desea ingresar: "))#le pedimos que ingrese una cantidad de registros que quiera ingresar
+finalizar = False #variable para poder finalizar el ciclo relacionada con la cantidad de registros
+
+while not finalizar:
+    
+    
+    nombre_animal = str(input("ingrese el nombre del animal que desea ingresar: "))#pedimos el nombre del animal a registrar
+    extincion = bool(input("ingrese True o False si la especie esta extinta o no: "))#le solicitamos que ingrese un booleano para saber si esta extinto o no
+    poblacion_aproximada = int(input("ingrese una poblacion aproximada: ")) #le pedimos la poblacion del animal
+    especie = str(input("ingrese la especie del animal: "))#le pedimos que ingrese la especie del animal
+    
+    #creamos el diccionario donde vamos a registrar los datos del animal que se ingresa, cada clave asociada a cada valor ingresado
+    registroAnimal = {
+        "nombre":nombre_animal,
+        "extincion":extincion,
+        "poblacion":poblacion_aproximada,
+        "especie":especie
+    }   
+    #le asignamos a cada clave el valor correspondiente
+    registroAnimal["nombre"] = nombre_animal
+    registroAnimal["extincion"] = extincion
+    registroAnimal["poblacion"] = poblacion_aproximada
+    registroAnimal["especie"] = especie
+    #agregamos con append el diccionario a la lista de animales(animales es una lista de diccionarios)
+    animales.append(registroAnimal)
+    #le restamos a la cantidad de registros ingresados 1 para ir disminuyendo hasta llegar a 0 y terminar
+    cantidad_registros -= 1
+    #comprobamos que cuando lleguemos a 0 la variable finalizar que condiciona al while cambie para asi terminar el bucle
+    if cantidad_registros == 0:
+        finalizar = True #al ser 0 la cantidad de registros cambia la variable
+        print(animales) #devolvemos en pantalla la lista completa de animales
+    else:
+        print("-------------------------------------") #agregamos una linea para que los ingresos queden separados y mejorar la visualizacion 
+        continue
+    
+for animal in animales: #para poder saber que animales estan extintos recorremos la lista con un for
+    if animal["extincion"] == True: #si extincion es igual a true en los registros existentes vamos a imprimir el nombre acompañado del mensaje siguiente
+        print("El "  + animal["nombre"] + " esta registrado como extinto")
